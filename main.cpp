@@ -16,14 +16,35 @@ int main(void)
 
 	SetTargetFPS(144);
 
+	Vector2 prevMousePos = { 0,0 };
+
 	while (!WindowShouldClose())
 	{
+		
 		Vector2 mousePos = GetMousePosition();
 
 		if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 		{
 			BeginTextureMode(target);
+            if (prevMousePos.x == 0 && prevMousePos.y == 0)
+			{
+				prevMousePos = mousePos;
+			}
+			DrawLineEx({ prevMousePos.x,prevMousePos.y }, { mousePos.x, mousePos.y }, 10.0f, BLUE);
 			DrawCircle((int)mousePos.x, (int)mousePos.y, 5.0f, BLUE);
+			EndTextureMode();
+
+			prevMousePos = mousePos;
+		}
+		else 
+		{
+			prevMousePos = { 0,0 };
+		}
+		
+		if (IsKeyPressed(KEY_R))
+		{
+			BeginTextureMode(target);
+			ClearBackground(RAYWHITE);
 			EndTextureMode();
 		}
 
@@ -32,6 +53,8 @@ int main(void)
 		ClearBackground(RAYWHITE);
 
 		DrawTextureRec(target.texture, { 0, 0, (float)target.texture.width, -(float)target.texture.height }, { 0, 0 }, WHITE);
+
+		
 
 		DrawCircle(GetMouseX(), GetMouseY(), 5.0f, BLUE);
 
