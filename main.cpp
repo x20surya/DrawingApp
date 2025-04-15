@@ -45,17 +45,15 @@ int main(void)
 		if (IsKeyPressed(KEY_C))
 		{
 			BeginTextureMode(target);
-			ClearBackground(RAYWHITE);
+			ClearBackground(WHITE);
 			EndTextureMode();
 		}
 
 		BeginDrawing();
 
-		ClearBackground(RAYWHITE);
+		ClearBackground(WHITE);
 
 		DrawTextureRec(target.texture, { 0, 0, (float)target.texture.width, -(float)target.texture.height }, { 0, 0 }, WHITE);
-
-		
 
 		DrawCircle(GetMouseX(), GetMouseY(), 5.0f, BLUE);
 
