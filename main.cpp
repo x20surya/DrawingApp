@@ -41,7 +41,7 @@ int main(void)
 			prevMousePos = { 0,0 };
 		}
 		
-		if (IsKeyPressed(KEY_R))
+		if (IsKeyPressed(KEY_C))
 		{
 			BeginTextureMode(target);
 			ClearBackground(RAYWHITE);
