@@ -1,4 +1,5 @@
 #include <raylib.h>
+#include <string>
 
 int main(void)
 {
@@ -59,6 +60,10 @@ int main(void)
 		DrawCircle(GetMouseX(), GetMouseY(), 5.0f, BLUE);
 
 		DrawFPS(10, 10);
+
+		std::string text = "Press 'C' to clear the screen";
+
+		DrawText(text.c_str(), screenWidth - (text.length() * 12), screenHeight - 20, 20, DARKGRAY);
 
 		EndDrawing();
 	}
