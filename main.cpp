@@ -6,10 +6,16 @@
 int main(void)
 {
 
-	const int screenWidth = 800;
-	const int screenHeight = 450;
+	int screenWidth = 1200;
+	int screenHeight = 720;
 
-	InitWindow(screenWidth, screenHeight, "Drawing app");
+	Image icon = LoadImage("./assets/icon.png");
+
+	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
+	InitWindow(screenWidth + 100, screenHeight + 100, "Drawing app");
+
+	SetWindowIcon(icon);
 
 	Color colors[MAX_COLORS_COUNT] = {
 		RAYWHITE, YELLOW, GOLD, ORANGE, PINK, RED, MAROON, GREEN, LIME, DARKGREEN,
@@ -50,6 +56,8 @@ int main(void)
 
 	while (!WindowShouldClose())
 	{
+		screenHeight = GetScreenHeight();
+		screenWidth = GetScreenWidth();
 		
 		Vector2 mousePos = GetMousePosition();
 
@@ -149,7 +157,7 @@ int main(void)
 
 		BeginDrawing();
 
-		ClearBackground(WHITE);
+		ClearBackground(BLACK);
 
 		DrawTextureRec(target.texture, { 0, 0, (float)target.texture.width, -(float)target.texture.height }, { 0, 0 }, WHITE);
 
@@ -179,7 +187,7 @@ int main(void)
 		{
 			DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(RAYWHITE, 0.8f));
 			DrawRectangle(0, 150, GetScreenWidth(), 80, BLACK);
-			DrawText("IMAGE SAVED:  my_amazing_texture_painting.png", 150, 180, 20, RAYWHITE);
+			DrawText("IMAGE SAVED:  painting.png", 150, 180, 20, RAYWHITE);
 		}
 
 		DrawFPS(10, 10);
@@ -187,8 +195,8 @@ int main(void)
 		std::string clearScreenText = "Press 'C' to clear the screen";
 		std::string brushSizeControlText = "Use Mouse Wheel to change brush size";
 
-		DrawText(clearScreenText.c_str(), screenWidth - (clearScreenText.length() * 12), screenHeight - 25, 20, DARKGRAY);
-		DrawText(brushSizeControlText.c_str(), screenWidth - (brushSizeControlText.length() * 12 + clearScreenText.length() * 12), screenHeight - 25, 20, DARKGRAY);
+		DrawText(clearScreenText.c_str(), screenWidth - (clearScreenText.length() * 12), screenHeight - 25, 20, RAYWHITE);
+		DrawText(brushSizeControlText.c_str(), screenWidth - (brushSizeControlText.length() * 12 + clearScreenText.length() * 12), screenHeight - 25, 20, RAYWHITE);
 		EndDrawing();
 	}
 
